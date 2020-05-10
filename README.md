@@ -15,4 +15,4 @@ clang crypto_sign5.c -O3 -o eTNaCl5
 ./eTNaCl3
 ./eTNaCl4
 ./eTNaCl5
-*/
+```

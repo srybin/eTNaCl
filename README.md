@@ -4,7 +4,7 @@ eTNaCl is TweetNaCl usage examples (https://tweetnacl.cr.yp.to/)
 ## Download, build and run
 ```bash
 git clone git@github.com:srybin/eTNaCl.git
-cd ./src/eTNaCl
+cd ./eTNaCl/src
 clang crypto_box1.c -O3 -o eTNaCl1
 clang crypto_box2.c -O3 -o eTNaCl2
 clang crypto_onetimeauth3.c -O3 -o eTNaCl3

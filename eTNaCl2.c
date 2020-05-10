@@ -56,7 +56,7 @@ int main() {
     Specifically: The crypto_box function ensures that the first crypto_box_BOXZEROBYTES bytes of the ciphertext c are all 0.
     */
     
-    unsigned long long len = 35;
+    unsigned long long len = crypto_box_ZEROBYTES + 3; //32 zero bytes + 3 bytes of message
     unsigned char box[35] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     unsigned char message[35] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'C','0','3'};
     crypto_box_afternm( box, message, len, nonce, device_symmetric_key );
@@ -72,13 +72,13 @@ int main() {
     The crypto_box_open function ensures (in case of success) that the first crypto_box_ZEROBYTES bytes of the plaintext m are all 0.
     */
 
-    unsigned char decripted_message[35] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    crypto_box_open_afternm( decripted_message, box, len, nonce, gateway_symmetric_key );
+    unsigned char unboxed_message[35] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    crypto_box_open_afternm( unboxed_message, box, len, nonce, gateway_symmetric_key );
 
     printhex("Device's secret key: ", device_secret_key, crypto_box_SECRETKEYBYTES);
     printhex("Device's public key: ", device_public_key, crypto_box_PUBLICKEYBYTES);
     printhex("Device's symmetric key: ", device_symmetric_key, crypto_box_BEFORENMBYTES);
-    printtext("Message to encrypt: ", message, crypto_box_BOXZEROBYTES, len);
+    printtext("Message to encrypt: ", message, crypto_box_ZEROBYTES, len);
     printhex("Nonce: ", nonce, crypto_box_NONCEBYTES);
     printhex("Crypto box: ", box, len);
     printf("\n");
@@ -86,7 +86,7 @@ int main() {
     printhex("Gateway's private key: ", gateway_secret_key, crypto_box_SECRETKEYBYTES);
     printhex("Gateway's public key: ", gateway_public_key, crypto_box_PUBLICKEYBYTES);
     printhex("Gateway's symmetric key: ", gateway_symmetric_key, crypto_box_BEFORENMBYTES);
-    printtext("Opened crypto box: ", decripted_message, crypto_box_BOXZEROBYTES, len);
+    printtext("Unboxed message: ", unboxed_message, crypto_box_ZEROBYTES, len);
     printf("\n");
     //--------------------------------------------------------------------
     unsigned char nonce2[ crypto_box_NONCEBYTES ];
@@ -98,12 +98,12 @@ int main() {
 
     //send |nonce2, box2|
 
-    unsigned char decripted_message2[35] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    crypto_box_open_afternm( decripted_message2, box2, len, nonce2, gateway_symmetric_key );
+    unsigned char unboxed_message2[35] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    crypto_box_open_afternm( unboxed_message2, box2, len, nonce2, gateway_symmetric_key );
     
     printhex("Nonce: ", nonce2, crypto_box_NONCEBYTES);
     printhex("Crypto box: ", box2, len);
-    printtext("Opened crypto box: ", decripted_message2, crypto_box_BOXZEROBYTES, len);
+    printtext("Unboxed message: ", unboxed_message2, crypto_box_ZEROBYTES, len);
 
     return 0;
 }

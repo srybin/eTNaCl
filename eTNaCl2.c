@@ -42,9 +42,6 @@ int main() {
     unsigned char device_symmetric_key[ crypto_box_BEFORENMBYTES ];
     crypto_box_beforenm( device_symmetric_key, gateway_public_key, device_secret_key );
 
-    unsigned char nonce[ crypto_box_NONCEBYTES ];
-    randombytes( nonce, crypto_box_NONCEBYTES );
-
     /*
     WARNING: Messages in the C NaCl API are 0-padded versions of messages in the C++ NaCl API. 
     Specifically: The caller must ensure, before calling the C NaCl crypto_box function, 
@@ -55,6 +52,9 @@ int main() {
     Similarly, ciphertexts in the C NaCl API are 0-padded versions of messages in the C++ NaCl API. 
     Specifically: The crypto_box function ensures that the first crypto_box_BOXZEROBYTES bytes of the ciphertext c are all 0.
     */
+
+    unsigned char nonce[ crypto_box_NONCEBYTES ];
+    randombytes( nonce, crypto_box_NONCEBYTES );
     
     unsigned long long len = crypto_box_ZEROBYTES + 3; //32 zero bytes + 3 bytes of message
     unsigned char box[35] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};

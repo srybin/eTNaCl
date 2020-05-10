@@ -18,8 +18,8 @@ clang crypto_sign5.c -O3 -o eTNaCl5
 ```
 
 ## Examples:
-1. [crypto_box1.c](src/crypto_box1.c) - Public-key authenticated encryption by using crypto_box()/crypto_box_open() to use only asymmetric keys: http://nacl.cr.yp.to/box.html.
-2. [crypto_box2.c](src/crypto_box2.c) - Public-key authenticated encryption by using crypto_box_beforenm()/crypto_box_afternm()/crypto_box_open_afternm() to use symmetric key: http://nacl.cr.yp.to/box.html.
+1. [crypto_box1.c](src/crypto_box1.c) - public-key authenticated encryption by using crypto_box()/crypto_box_open() to use only asymmetric keys (curve25519xsalsa20poly1305): http://nacl.cr.yp.to/box.html.
+2. [crypto_box2.c](src/crypto_box2.c) - public-key authenticated encryption by using crypto_box_beforenm()/crypto_box_afternm()/crypto_box_open_afternm() to use symmetric key (curve25519xsalsa20poly1305): http://nacl.cr.yp.to/box.html.
 3. [crypto_onetimeauth3.c](src/crypto_onetimeauth3.c) - MAC (Poly1305): http://nacl.cr.yp.to/onetimeauth.html.
-4. [crypto_secretbox4.c](src/crypto_secretbox4.c) - Symmetric-key authenticated encryption by using xsalsa20poly1305: http://nacl.cr.yp.to/secretbox.html.
-5. [crypto_sign5.c](src/crypto_sign5.c) - Digital signage (Ed25519): http://nacl.cr.yp.to/sign.html.
+4. [crypto_secretbox4.c](src/crypto_secretbox4.c) - symmetric-key authenticated encryption by using xsalsa20poly1305: http://nacl.cr.yp.to/secretbox.html.
+5. [crypto_sign5.c](src/crypto_sign5.c) - digital signage (Ed25519): http://nacl.cr.yp.to/sign.html.

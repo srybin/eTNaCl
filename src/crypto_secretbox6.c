@@ -1,34 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "tweetnacl.c"
-
-void randombytes(u8* buf,u64 len) {
-    srand( arc4random() );
-
-    for (int i = 0; i < len; i++) {
-        buf[i] = rand();
-    }
-}
-
-void printhex(char* label, unsigned char* key, int len) {
-    printf("%s", label);
-
-    for (int i=0; i < len; i++) {
-       printf("%02x",key[i]);
-    }
-
-    printf("\n");
-}
-
-void printtext(char* label, unsigned char* m, int skip, int len){
-    printf("%s", label);
-
-    for (int i = skip; i < len; i++) {
-       printf("%c", m[i] );
-    }
-
-    printf("\n");
-}
+#include "etweetnacl.c"
 
 int main() {
     unsigned char k[ crypto_secretbox_KEYBYTES ];

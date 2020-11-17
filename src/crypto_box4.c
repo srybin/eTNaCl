@@ -17,10 +17,10 @@ int main() {
     //device use ECIES to box a message
     //--------------------------------------------------------------------
     unsigned char gateway_x25519_public_key[ crypto_box_PUBLICKEYBYTES ];
-    crypto_ed25519_pk_to_x25519( gateway_x25519_public_key, gateway_ed25519_public_key );
+    crypto_sign_ed25519_pk_to_curve25519( gateway_x25519_public_key, gateway_ed25519_public_key );
 
     unsigned char device_x25519_secret_key[ crypto_box_SECRETKEYBYTES ];
-    crypto_ed25519_sk_to_x25519( device_x25519_secret_key, device_ed25519_secret_key );
+    crypto_sign_ed25519_sk_to_curve25519( device_x25519_secret_key, device_ed25519_secret_key );
 
     /*
     WARNING: Messages in the C NaCl API are 0-padded versions of messages in the C++ NaCl API. 
@@ -48,10 +48,10 @@ int main() {
     //device use ECIES to unbox a message
     //--------------------------------------------------------------------
     unsigned char gateway_x25519_secret_key[ crypto_box_SECRETKEYBYTES ];
-    crypto_ed25519_sk_to_x25519( gateway_x25519_secret_key, gateway_ed25519_secret_key );
+    crypto_sign_ed25519_sk_to_curve25519( gateway_x25519_secret_key, gateway_ed25519_secret_key );
 
     unsigned char device_x25519_public_key[ crypto_box_PUBLICKEYBYTES ];
-    crypto_ed25519_pk_to_x25519( device_x25519_public_key, device_ed25519_public_key );
+    crypto_sign_ed25519_pk_to_curve25519( device_x25519_public_key, device_ed25519_public_key );
 
     /*
     The caller must ensure, before calling the crypto_box_open function, 

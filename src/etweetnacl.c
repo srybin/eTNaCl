@@ -3,7 +3,7 @@
 #include "tweetnacl.h"
 #include "tweetnacl.c"
 
-int crypto_ed25519_pk_to_x25519(u8 *z, u8 *ed25519pk) {
+int crypto_sign_ed25519_pk_to_curve25519(u8 *z, u8 *ed25519pk) {
     gf q[4];
     gf a, b;
     
@@ -19,7 +19,7 @@ int crypto_ed25519_pk_to_x25519(u8 *z, u8 *ed25519pk) {
     return 0;
 }
 
-int crypto_ed25519_sk_to_x25519(u8 *o, u8 *ed25519sk) {
+int crypto_sign_ed25519_sk_to_curve25519(u8 *o, u8 *ed25519sk) {
     u8 d[64];
     int i;
     
